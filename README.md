@@ -5,6 +5,7 @@ https://movieguessingapp.netlify.app/
 CinemaGuess est une application interactive de devinette de films développée en Node.js. Les utilisateurs doivent deviner des films à partir d'indices tels que des affiches, des acteurs, des résumés ou des bandes-annonces. L'application utilise une API externe pour récupérer les données des films.
 
 ✨ Fonctionnalités
+
 🎥 Deviner des films à partir d'indices variés
 
 📱 Interface utilisateur intuitive
