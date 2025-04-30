@@ -9,9 +9,9 @@ type Hint = {
 };
 
 function App() {
-  const [movies, setMovies] = useState<TMDBMovie[]>([]);
-  const [movieToGuess, setMovieToGuess] = useState<TMDBMovie | null>(null);
-  const [guess, setGuess] = useState('');
+  const [movies, setMovies] = useState<TMDBMovie[]>([]); // Liste des films
+  const [movieToGuess, setMovieToGuess] = useState<TMDBMovie | null>(null); // Film à deviner
+  const [guess, setGuess] = useState(''); // Réponse de l'utilisateur
   const [attempts, setAttempts] = useState(0);
   const [gameWon, setGameWon] = useState(false);
   const [message, setMessage] = useState('');
@@ -22,9 +22,9 @@ function App() {
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
-      const fetchedMovies = await getPopularMovies();
+      const fetchedMovies = await getPopularMovies(); // Appel API
       setMovies(fetchedMovies);
-      setMovieToGuess(fetchedMovies[Math.floor(Math.random() * fetchedMovies.length)]);
+      setMovieToGuess(fetchedMovies[Math.floor(Math.random() * fetchedMovies.length)]); // Film aléatoire
       setLoading(false);
     };
 
@@ -40,18 +40,19 @@ function App() {
     { name: 'Image', value: 'Image du film', icon: <Camera className="w-5 h-5" /> }
   ] : [];
 
-  const visibleHints = Math.min(Math.floor(attempts / 5) + 1, hints.length);
-  const showImage = attempts >= 10;
+  const visibleHints = Math.min(Math.floor(attempts / 5) + 1, hints.length); // Indice tous les 5 Essais
+  const showImage = attempts >= 10; //L'affiche du film est révélée après 10 essais.
+
 
   const handleGuess = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (!guess.trim() || !movieToGuess) return;
 
     if (guess.toLowerCase() === movieToGuess.title.toLowerCase()) {
-      setGameWon(true);
+      setGameWon(true); // Victoire
       setMessage('🎉 Bravo ! Vous avez trouvé !');
     } else {
-      setShake(true);
+      setShake(true); // Animation d'erreur
       setAttempts(prev => prev + 1);
       setMessage('❌ Ce n\'est pas le bon film.');
       setTimeout(() => setShake(false), 500);
@@ -61,7 +62,7 @@ function App() {
 
   const resetGame = useCallback(() => {
     if (movies.length > 0) {
-      setMovieToGuess(movies[Math.floor(Math.random() * movies.length)]);
+      setMovieToGuess(movies[Math.floor(Math.random() * movies.length)]); // Réinitialise tous les états
       setGuess('');
       setAttempts(0);
       setGameWon(false);
