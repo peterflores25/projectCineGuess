@@ -13,7 +13,7 @@ CinemaGuess est une application interactive de devinette de films développée e
 🔍 Utilisation d'une API de films (comme TMDB, OMDB, etc.)
 
 🛠️ Technologies Utilisées
-Backend: Node.js, Express
+Backend: Node.js, Express, React
 
 API: The Movie Database (TMDB) ou autre API de films
 
